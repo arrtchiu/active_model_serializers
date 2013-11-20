@@ -151,6 +151,7 @@ end
             associated_data = Array(send(association.name))
             hash[association.root_key] = serialize(association, associated_data)
           end
+          hash.merge!(association.build_serializer(associated_data, scope: scope).embedded_in_root_associations)
         end
       end
     end
